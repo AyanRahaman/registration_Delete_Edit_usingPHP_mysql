@@ -18,19 +18,22 @@
         $city=$_POST["city"];
         $state=$_POST["state"];
         $pin=$_POST["pin"];
+        
+        
 
-        // echo $name . '</br>';
-        // echo $email . '</br>';
-        // echo $address . '</br>';
+        //Cheak the email id is unique or not--
+        $code = "SELECT * FROM newproject WHERE email = '$email'";
+            $query = $connectingDb->query($code);
+            if($query->rowCount() > 0){
+                
+                echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Email id alrady exist!!!</strong> Enter a fresh email id.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>';
+            }
+            else{
 
-        // echo $city . '</br>';
-
-
-        // echo $state . '</br>';
-
-        // echo $pin . '</br>';
-
-        global $connectingDb;
+              global $connectingDb;
 
         $sql="INSERT INTO newproject(name,email,password,address,city,state,pin)
         VALUES(:Xname,:Xemail,:Xpassword,:Xaddress,:Xcity,:Xstate,:Xpin)";
@@ -59,11 +62,14 @@
         </div>';
         }
       
-       } else{
+      //  }
+       else{
           echo '<span class="success"> OOps! something went wrong<span>';
         }
 
       }
+    }
+  }
   
 
 
@@ -147,13 +153,13 @@
   <?php
 
 
-      global $connectingDb;
+      // global $connectingDb;
       $sql="SELECT * FROM newproject ORDER BY id ASC";
 
       $stmt=$connectingDb->query($sql);
 
 
-      while ($Data=$stmt->fetch()) {
+      while($Data=$stmt->fetch()){
      
         $id=$Data["id"]; 
         $name=$Data["name"];
