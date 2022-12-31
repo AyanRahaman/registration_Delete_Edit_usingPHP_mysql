@@ -105,7 +105,7 @@ if(isset($_POST['submit'])){
 
   $result=$connectingDb->query($sql);
 
-  Redirect_to("login.php");
+  Redirect_to("Register.php");
   
 
   if($result){

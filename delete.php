@@ -16,7 +16,7 @@ $sql = "DELETE FROM newproject WHERE id = '$id'";
 
  $result=$connectingDb->query($sql);
 
- Redirect_to("login.php");
+ Redirect_to("Register.php");
 
  
 
